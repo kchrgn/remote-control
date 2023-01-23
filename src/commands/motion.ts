@@ -1,22 +1,22 @@
 import { mouse, Point } from '@nut-tree/nut-js';
 
 export const motion = {
-  mouse_up: async (delta) => { 
+  mouse_up: async (delta: number) => { 
     const cursorPosition = await mouse.getPosition()
     await mouse.setPosition(new Point(cursorPosition.x + 1, cursorPosition.y - delta));
     return 'mouse_up';
   },
-  mouse_down: async (delta) => { 
+  mouse_down: async (delta: number) => { 
     const cursorPosition = await mouse.getPosition()
     await mouse.setPosition(new Point(cursorPosition.x + 1, cursorPosition.y + delta));
     return 'mouse_down';
   },
-  mouse_left: async (delta) => { 
+  mouse_left: async (delta: number) => { 
     const cursorPosition = await mouse.getPosition()
     await mouse.setPosition(new Point(cursorPosition.x - delta, cursorPosition.y));
     return 'mouse_left';
   },
-  mouse_right: async (delta) => { 
+  mouse_right: async (delta: number) => { 
     const cursorPosition = await mouse.getPosition()
     await mouse.setPosition(new Point(cursorPosition.x + delta, cursorPosition.y));
     return 'mouse_right';

@@ -1,4 +1,4 @@
-import { mouse, Point, Button, Region, screen } from '@nut-tree/nut-js';
+import { mouse, Region, screen } from '@nut-tree/nut-js';
 import Jimp from 'jimp';
 
 export const printScreen = async () => {
@@ -20,8 +20,8 @@ export const printScreen = async () => {
   const region = new Region(left, top, 200, 200);
   const image = await screen.grabRegion(region);
   const imageRGB = await image.toRGB();
-  const imageJimp = await Jimp.read(imageRGB);
-  const result = await imageJimp.getBase64Async(Jimp.AUTO);
+  const imageJimp = new Jimp(imageRGB);
+  const result = await imageJimp.getBase64Async(Jimp.MIME_PNG);
 
   return `prnt_scrn ${result.replace('data:image/png;base64,', '')}`;
 }

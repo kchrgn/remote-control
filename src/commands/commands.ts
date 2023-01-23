@@ -4,7 +4,7 @@ import { rectangle } from './rectangle.js';
 import { square } from './square.js';
 import { printScreen } from './print_screen.js';
 
-const commandSelector = {
+const commandSelector: CommandsArray = {
   ...motion,
   draw_circle: circle,
   draw_rectangle: rectangle,
@@ -12,8 +12,13 @@ const commandSelector = {
   prnt_scrn: printScreen,
 }
 
-export const commandHandler = async (data) => {
+interface CommandsArray {
+  [index: string]: (arg1: number, arg2: number ) => {}
+}
+
+export const commandHandler = async (data: string) => {
   const [command, arg1, arg2] = data.split(' ');
-  const result = await commandSelector[command](Number(arg1), Number(arg2));
+  if (!command) return 'Unknown_command'
+  const result = commandSelector[command]!(Number(arg1), Number(arg2));
   return result;
 }
