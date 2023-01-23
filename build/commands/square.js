@@ -34,5 +34,6 @@ export const square = (length) => __awaiter(void 0, void 0, void 0, function* ()
     yield mouse.move(trajectory);
     yield mouse.releaseButton(Button.LEFT);
     yield mouse.setPosition(cursorPosition);
+    console.log('Result: square has been drawn');
     return 'draw_square';
 });

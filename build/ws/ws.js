@@ -11,10 +11,13 @@ import { createWebSocketStream, WebSocketServer } from 'ws';
 import { commandHandler } from '../commands/commands.js';
 export class WSServer {
     constructor(port) {
+        this.client = null;
         this.wss = new WebSocketServer({ port });
         const srvInfo = this.wss.address();
-        console.log(`Server web socket parameters: port: ${srvInfo.port}, family: ${srvInfo.family}, address: ${srvInfo.address}`);
+        console.log(`Server web socket parameters: port: ${srvInfo.port}, family: ${srvInfo.family}`);
         this.wss.on('connection', (ws) => {
+            console.log('Client connected');
+            this.client = ws;
             const dataStream = createWebSocketStream(ws, { encoding: 'utf8', decodeStrings: false });
             dataStream.on('data', (data) => __awaiter(this, void 0, void 0, function* () {
                 console.log('Received command: ', data);
@@ -22,8 +25,16 @@ export class WSServer {
                 dataStream.write(result);
             }));
         });
+        this.wss.on('error', (err) => {
+            console.log('WS server can not be started. Error: ', err.message);
+            console.log('Try to close node.js process in task manager');
+            process.exit(0);
+        });
     }
     close() {
+        var _a;
+        (_a = this.client) === null || _a === void 0 ? void 0 : _a.close();
         this.wss.close();
+        process.exit(0);
     }
 }

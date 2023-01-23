@@ -15,5 +15,6 @@ export const rectangle = async (width: number, height: number) => {
   await mouse.move(trajectory);
   await mouse.releaseButton(Button.LEFT);
   await mouse.setPosition(cursorPosition);
+  console.log('Result: rectangle has been drawn');
   return 'draw_rectangle';
 }

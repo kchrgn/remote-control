@@ -22,6 +22,6 @@ export const printScreen = async () => {
   const imageRGB = await image.toRGB();
   const imageJimp = new Jimp(imageRGB);
   const result = await imageJimp.getBase64Async(Jimp.MIME_PNG);
-
+  console.log('Result: image grabbed');
   return `prnt_scrn ${result.replace('data:image/png;base64,', '')}`;
 }

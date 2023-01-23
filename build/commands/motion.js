@@ -11,26 +11,35 @@ import { mouse, Point } from '@nut-tree/nut-js';
 export const motion = {
     mouse_up: (delta) => __awaiter(void 0, void 0, void 0, function* () {
         const cursorPosition = yield mouse.getPosition();
-        yield mouse.setPosition(new Point(cursorPosition.x + 1, cursorPosition.y - delta));
+        yield mouse.setPosition(new Point(cursorPosition.x, cursorPosition.y - delta));
+        const newMousePosition = yield mouse.getPosition();
+        console.log(`Result: new mouse position is ${newMousePosition}`);
         return 'mouse_up';
     }),
     mouse_down: (delta) => __awaiter(void 0, void 0, void 0, function* () {
         const cursorPosition = yield mouse.getPosition();
-        yield mouse.setPosition(new Point(cursorPosition.x + 1, cursorPosition.y + delta));
+        yield mouse.setPosition(new Point(cursorPosition.x, cursorPosition.y + delta));
+        const newMousePosition = yield mouse.getPosition();
+        console.log(`Result: new mouse position is ${newMousePosition}`);
         return 'mouse_down';
     }),
     mouse_left: (delta) => __awaiter(void 0, void 0, void 0, function* () {
         const cursorPosition = yield mouse.getPosition();
         yield mouse.setPosition(new Point(cursorPosition.x - delta, cursorPosition.y));
+        const newMousePosition = yield mouse.getPosition();
+        console.log(`Result: new mouse position is ${newMousePosition}`);
         return 'mouse_left';
     }),
     mouse_right: (delta) => __awaiter(void 0, void 0, void 0, function* () {
         const cursorPosition = yield mouse.getPosition();
         yield mouse.setPosition(new Point(cursorPosition.x + delta, cursorPosition.y));
+        const newMousePosition = yield mouse.getPosition();
+        console.log(`Result: new mouse position is ${newMousePosition}`);
         return 'mouse_right';
     }),
     mouse_position: () => __awaiter(void 0, void 0, void 0, function* () {
         const cursorPosition = yield mouse.getPosition();
+        console.log(`Result: mouse position is ${cursorPosition}`);
         return `mouse_position ${cursorPosition.x},${cursorPosition.y})`;
     })
 };

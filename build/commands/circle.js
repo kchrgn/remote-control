@@ -20,5 +20,6 @@ export const circle = (radius) => __awaiter(void 0, void 0, void 0, function* ()
     yield mouse.move(trajectory);
     yield mouse.releaseButton(Button.LEFT);
     yield mouse.setPosition(cursorPosition);
+    console.log('Result: circle has been drawn');
     return 'draw_circle';
 });

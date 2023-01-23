@@ -34,5 +34,6 @@ export const rectangle = (width, height) => __awaiter(void 0, void 0, void 0, fu
     yield mouse.move(trajectory);
     yield mouse.releaseButton(Button.LEFT);
     yield mouse.setPosition(cursorPosition);
+    console.log('Result: rectangle has been drawn');
     return 'draw_rectangle';
 });

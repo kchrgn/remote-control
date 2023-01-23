@@ -15,5 +15,6 @@ export const square = async (length: number) => {
   await mouse.move(trajectory);
   await mouse.releaseButton(Button.LEFT);
   await mouse.setPosition(cursorPosition);
+  console.log('Result: square has been drawn');
   return 'draw_square';
 }
